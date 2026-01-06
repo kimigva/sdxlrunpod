@@ -1,0 +1,239 @@
+{
+  "input": {
+    "workflow": {
+      "2": {
+        "inputs": {
+          "value": -2,
+          "clip": [
+            "16",
+            1
+          ]
+        },
+        "class_type": "CLIPSetLastLayer",
+        "_meta": {
+          "title": "CLIPSetLastLayer"
+        }
+      },
+      "3": {
+        "inputs": {
+          "text": "kitagawa marin, adult face, nsfw, 1female and 1male-viewer, naked pussy, running hand along viewer's cheek, gray plaid skirt, tie, vaginal sex, missionary position, lying on bed, looking at viewer with tenderness, lying on bed with hair messy on pillow, tender, aroused, bed in home room, cool air, intimate atmosphere, masterpiece, best quality, amazing quality",
+          "clip": [
+            "2",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "4": {
+        "inputs": {
+          "text": "child, kids, kid, loli, children, small girl, young, teenage, babyface, baby, blood, split-screen, bad quality,worst quality,worst detail,sketch,censor, (bad anatomy), lowres, bad composition, fewer digits, text, username, logo, inaccurate eyes, extra digits, fewer digits, extra arms, disfigured, missing arms, too many fingers, fused fingers, missing fingers, distant, far away, shot from distance, long shot, wide shot, tiny person, small figure, monochrome, artist name, talking, direct conversation, sharing stories",
+          "clip": [
+            "2",
+            0
+          ]
+        },
+        "class_type": "CLIPTextEncode",
+        "_meta": {
+          "title": "CLIPTextEncode"
+        }
+      },
+      "5": {
+        "inputs": {
+          "seed": 1467031820,
+          "steps": 30,
+          "cfg": 3,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "denoise": 1,
+          "model": [
+            "16",
+            0
+          ],
+          "positive": [
+            "3",
+            0
+          ],
+          "negative": [
+            "4",
+            0
+          ],
+          "latent_image": [
+            "6",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "6": {
+        "inputs": {
+          "value": 816
+        },
+        "class_type": "EmptyLatentImage",
+        "_meta": {
+          "title": "EmptyLatentImage"
+        }
+      },
+      "7": {
+        "inputs": {
+          "samples": [
+            "14",
+            0
+          ],
+          "vae": [
+            "16",
+            2
+          ]
+        },
+        "class_type": "VAEDecode",
+        "_meta": {
+          "title": "VAEDecode"
+        }
+      },
+      "8": {
+        "inputs": {
+          "filename_prefix": "ComfyUI",
+          "images": [
+            "7",
+            0
+          ]
+        },
+        "class_type": "SaveImage",
+        "_meta": {
+          "title": "SaveImage"
+        }
+      },
+      "9": {
+        "inputs": {
+          "value": 512,
+          "samples": [
+            "5",
+            0
+          ],
+          "vae": [
+            "16",
+            2
+          ]
+        },
+        "class_type": "VAEDecodeTiled",
+        "_meta": {
+          "title": "VAEDecodeTiled"
+        }
+      },
+      "10": {
+        "inputs": {
+          "model_name": "RealESRGAN_x4plus_anime_6B.pth"
+        },
+        "class_type": "UpscaleModelLoader",
+        "_meta": {
+          "title": "UpscaleModelLoader"
+        }
+      },
+      "11": {
+        "inputs": {
+          "upscale_model": [
+            "10",
+            0
+          ],
+          "image": [
+            "9",
+            0
+          ]
+        },
+        "class_type": "ImageUpscaleWithModel",
+        "_meta": {
+          "title": "ImageUpscaleWithModel"
+        }
+      },
+      "12": {
+        "inputs": {
+          "upscale_method": "nearest-exact",
+          "width": 974,
+          "height": 1460,
+          "crop": "disabled",
+          "image": [
+            "11",
+            0
+          ]
+        },
+        "class_type": "ImageScale",
+        "_meta": {
+          "title": "ImageScale"
+        }
+      },
+      "13": {
+        "inputs": {
+          "value": 512,
+          "pixels": [
+            "12",
+            0
+          ],
+          "vae": [
+            "16",
+            2
+          ]
+        },
+        "class_type": "VAEEncodeTiled",
+        "_meta": {
+          "title": "VAEEncodeTiled"
+        }
+      },
+      "14": {
+        "inputs": {
+          "seed": 1467031820,
+          "steps": 20,
+          "cfg": 3,
+          "sampler_name": "euler",
+          "scheduler": "normal",
+          "denoise": 0.5,
+          "model": [
+            "16",
+            0
+          ],
+          "positive": [
+            "3",
+            0
+          ],
+          "negative": [
+            "4",
+            0
+          ],
+          "latent_image": [
+            "13",
+            0
+          ]
+        },
+        "class_type": "KSampler",
+        "_meta": {
+          "title": "KSampler"
+        }
+      },
+      "15": {
+        "inputs": {
+          "images": [
+            "7",
+            0
+          ]
+        },
+        "class_type": "PreviewImage",
+        "_meta": {
+          "title": "PreviewImage"
+        }
+      },
+      "16": {
+        "inputs": {
+          "ckpt_name": "waiIllustriousSDXL_v160.safetensors"
+        },
+        "class_type": "CheckpointLoaderSimple",
+        "_meta": {
+          "title": "CheckpointLoaderSimple"
+        }
+      }
+    }
+  }
+}
